@@ -52,7 +52,8 @@ steps:
   inputs:
     command: test
     publishTestResults: false
-    projects: 'src/**/*@(Tests|Specs).csproj'
+    # For more information on file matching patterns see https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/file-matching-patterns?view=azure-devops
+    projects: 'src/**/*@([Tt]ests|Specs).csproj'
     arguments: '--no-build --configuration ${{ parameters.buildConfiguration }} --logger trx --results-directory "$(Agent.TempDirectory)/TestResults/${{ parameters.solutionName }}" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="$(Agent.TempDirectory)/TestResults/${{ parameters.solutionName }}/Coverage"  --collect:"Code Coverage"'
 
 - task: DotNetCoreCLI@2
