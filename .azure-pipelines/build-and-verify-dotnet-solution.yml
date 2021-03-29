@@ -37,14 +37,14 @@ steps:
   displayName: Restore NuGet Packages
   inputs:
     command: restore
-    projects: './src/${{ parameters.solutionName }}.sln'
+    projects: 'src/${{ parameters.solutionName }}.sln'
     includeNuGetOrg: true
     
 - task: DotNetCoreCLI@2
   displayName: Build Solution
   inputs:
     command: build
-    projects: './src/${{ parameters.solutionName }}.sln'
+    projects: 'src/${{ parameters.solutionName }}.sln'
     arguments: '--configuration ${{ parameters.buildConfiguration }}'
 
 - task: DotNetCoreCLI@2
@@ -52,6 +52,6 @@ steps:
   inputs:
     command: test
     publishTestResults: false
-    projects: './src/${{ parameters.solutionName }}.sln'
+    projects: 'src/${{ parameters.solutionName }}.sln'
     filter: 'TestCategory!=Integration'
     arguments: '--configuration ${{ parameters.buildConfiguration }} --logger trx --results-directory "$(Agent.TempDirectory)/TestResults/${{ parameters.solutionName }}" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="$(Agent.TempDirectory)/TestResults/${{ parameters.solutionName }}/Coverage"  --collect:"Code Coverage"'
