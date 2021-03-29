@@ -19,7 +19,7 @@ steps:
   - script: |
       echo "##vso[task.logissue type=error;]Template parameter \"solutionName\" can not be empty or whitespace"
       echo "##vso[task.complete result=Failed;]"
-    displayName: 'Fail if solutionName is empty or whitespace'
+    displayName: Fail if solutionName is empty or whitespace
 
 # Use this task to acquire a specific version of .NET Core from the Internet or the tools cache and add it to the PATH.
 # You can also use this task to change the version of .NET Core used in subsequent tasks like .NET Core cli task.
@@ -32,3 +32,11 @@ steps:
     packageType: sdk
     version: ${{ parameters.dotNetVersion }}
     installationPath: $(Agent.ToolsDirectory)/dotnet
+
+- task: DotNetCoreCLI@2
+  display: Restore NuGet Packages
+  inputs:
+    command: restore
+    projects: './src/${{ parameters.solutionName }}.sln'
+    includeNuGetOrg: true
+    
