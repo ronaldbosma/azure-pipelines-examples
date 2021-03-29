@@ -13,11 +13,13 @@ parameters:
     - Release
 
 steps:
+# It's possible to use template expressions to validate if a parameter is empty or whitespace and fail the pipeline.
+# For more information on template expressions see https://docs.microsoft.com/en-us/azure/devops/pipelines/process/templates?view=azure-devops#template-expressions
 - ${{ if eq(replace(parameters.solutionName, ' ', ''), '') }}:
   - script: |
       echo "##vso[task.logissue type=error;]Template parameter \"solutionName\" can not be empty or whitespace"
       echo "##vso[task.complete result=Failed;]"
-    displayName: 'Raise error if solutionName is empty or whitespace'
+    displayName: 'Fail if solutionName is empty or whitespace'
 
 
 # Use this task to acquire a specific version of .NET Core from the Internet or the tools cache and add it to the PATH.
