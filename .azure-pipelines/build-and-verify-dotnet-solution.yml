@@ -32,10 +32,10 @@ steps:
   - powershell: Write-Host "solutionNameNull is empty -{{ parameters.solutionNameNull }}-"
 
 - powershell: |
-  Write-Host "solutionName -{{ parameters.solutionName }}-"
-  Write-Host "solutionNameEmpty -{{ parameters.solutionNameEmpty }}-"
-  Write-Host "solutionNameWhitespace -{{ parameters.solutionNameWhitespace }}-"
-  Write-Host "solutionNameNull -{{ parameters.solutionNameNull }}-"
+    Write-Host "solutionName -{{ parameters.solutionName }}-"
+    Write-Host "solutionNameEmpty -{{ parameters.solutionNameEmpty }}-"
+    Write-Host "solutionNameWhitespace -{{ parameters.solutionNameWhitespace }}-"
+    Write-Host "solutionNameNull -{{ parameters.solutionNameNull }}-"
 
 
 # Use this task to acquire a specific version of .NET Core from the Internet or the tools cache and add it to the PATH.
