@@ -21,7 +21,8 @@ stages:
     steps:
     - template: '.azure-pipelines/build-and-verify-dotnet-solution.yml'
       parameters:
-        solutionName: 'AzurePipelinesExample'
+        solutionName: AzurePipelinesExample
+        buildConfiguration: Foo
 
       
     
