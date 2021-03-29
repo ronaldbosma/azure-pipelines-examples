@@ -52,6 +52,7 @@ steps:
   inputs:
     command: test
     publishTestResults: false
-    projects: 'src/**/*[Tt]ests.csproj'
-    filter: 'TestCategory!=Integration'
+    projects: |
+      'src/**/*[Tt]ests.csproj'
+      'src/**/*Specs.csproj'
     arguments: '--configuration ${{ parameters.buildConfiguration }} --logger trx --results-directory "$(Agent.TempDirectory)/TestResults/${{ parameters.solutionName }}" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="$(Agent.TempDirectory)/TestResults/${{ parameters.solutionName }}/Coverage"  --collect:"Code Coverage"'
