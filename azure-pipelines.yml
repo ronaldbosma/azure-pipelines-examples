@@ -19,5 +19,7 @@ stages:
     
     steps:
     - template: '.azure-pipelines/build-and-verify-dotnet-solution.yml'
+      inputs:
+        solutionName: ''
       
     
