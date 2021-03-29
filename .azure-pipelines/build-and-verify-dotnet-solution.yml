@@ -20,22 +20,22 @@ parameters:
 
 steps:
 - ${{ if eq(replace(parameters.solutionName, ' ', ''), '') }}:
-  - powershell: Write-Host "solutionName is empty -{{ parameters.solutionName }}-"
+  - powershell: Write-Host "solutionName is empty -${{ parameters.solutionName }}-"
 
 - ${{ if eq(replace(parameters.solutionNameEmpty, ' ', ''), '') }}:
-  - powershell: Write-Host "solutionNameEmpty is empty -{{ parameters.solutionNameEmpty }}-"
+  - powershell: Write-Host "solutionNameEmpty is empty -${{ parameters.solutionNameEmpty }}-"
 
 - ${{ if eq(replace(parameters.solutionNameWhitespace, ' ', ''), '') }}:
-  - powershell: Write-Host "solutionNameWhitespace is empty -{{ parameters.solutionNameWhitespace }}-"
+  - powershell: Write-Host "solutionNameWhitespace is empty -${{ parameters.solutionNameWhitespace }}-"
 
 - ${{ if eq(replace(parameters.solutionNameNull, ' ', ''), '') }}:
-  - powershell: Write-Host "solutionNameNull is empty -{{ parameters.solutionNameNull }}-"
+  - powershell: Write-Host "solutionNameNull is empty -${{ parameters.solutionNameNull }}-"
 
 - powershell: |
-    Write-Host "solutionName -{{ parameters.solutionName }}-"
-    Write-Host "solutionNameEmpty -{{ parameters.solutionNameEmpty }}-"
-    Write-Host "solutionNameWhitespace -{{ parameters.solutionNameWhitespace }}-"
-    Write-Host "solutionNameNull -{{ parameters.solutionNameNull }}-"
+    Write-Host "solutionName -${{ parameters.solutionName }}-"
+    Write-Host "solutionNameEmpty -${{ parameters.solutionNameEmpty }}-"
+    Write-Host "solutionNameWhitespace -${{ parameters.solutionNameWhitespace }}-"
+    Write-Host "solutionNameNull -${{ parameters.solutionNameNull }}-"
 
 
 # Use this task to acquire a specific version of .NET Core from the Internet or the tools cache and add it to the PATH.
