@@ -56,7 +56,8 @@ steps:
     arguments: '--no-build --configuration ${{ parameters.buildConfiguration }} --logger trx --results-directory "$(Agent.TempDirectory)/TestResults/${{ parameters.solutionName }}" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="$(Agent.TempDirectory)/TestResults/${{ parameters.solutionName }}/Coverage"  --collect:"Code Coverage"'
 
 - task: DotNetCoreCLI@2
-  displayName: Run Tests
+  displayName: Run Specs
+  enabled: false
   inputs:
     command: test
     publishTestResults: false
