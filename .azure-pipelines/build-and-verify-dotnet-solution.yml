@@ -20,16 +20,19 @@ parameters:
 
 steps:
 - ${{ if eq(replace(parameters.solutionName, ' ', ''), '') }}:
-  - powershell: Write-Host "solutionName is empty -${{ parameters.solutionName }}-"
+  - script: |
+      echo "##vso[task.logissue type=error;]Missing template parameter \"solutionName\""
+      echo "##vso[task.complete result=Failed;]"
 
 - ${{ if eq(replace(parameters.solutionNameEmpty, ' ', ''), '') }}:
-  - powershell: Write-Host "solutionNameEmpty is empty -${{ parameters.solutionNameEmpty }}-"
+  - script: |
+      echo "##vso[task.logissue type=error;]Missing template parameter \"solutionNameEmpty\""
+      echo "##vso[task.complete result=Failed;]"
 
 - ${{ if eq(replace(parameters.solutionNameWhitespace, ' ', ''), '') }}:
-  - powershell: Write-Host "solutionNameWhitespace is empty -${{ parameters.solutionNameWhitespace }}-"
-
-- ${{ if eq(replace(parameters.solutionNameNull, ' ', ''), '') }}:
-  - powershell: Write-Host "solutionNameNull is empty -${{ parameters.solutionNameNull }}-"
+  - script: |
+      echo "##vso[task.logissue type=error;]Missing template parameter \"solutionNameWhitespace\""
+      echo "##vso[task.complete result=Failed;]"
 
 - powershell: |
     Write-Host "solutionName -${{ parameters.solutionName }}-"
