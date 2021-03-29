@@ -27,8 +27,8 @@ steps:
 # to help avoid a pipeline run being broken due to a change we make to our agent software.
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/tool/dotnet-core-tool-installer?view=azure-devops
 - task: UseDotNet@2
-  displayName: 'Use .NET Core sdk ${{ parameters.dotNetVersion }}'
+  displayName: Use .NET Core sdk ${{ parameters.dotNetVersion }}
   inputs:
     packageType: sdk
-    version: '${{ parameters.dotNetVersion }}'
+    version: ${{ parameters.dotNetVersion }}
     installationPath: $(Agent.ToolsDirectory)/dotnet

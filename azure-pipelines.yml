@@ -31,10 +31,10 @@ stages:
       clean: outputs
     
     steps:
-    - template: '.azure-pipelines/build-and-verify-dotnet-solution.yml'
+    - template: .azure-pipelines/build-and-verify-dotnet-solution.yml
       parameters:
-        solutionName: '$(solutionName)'
-        buildConfiguration: '${{ parameters.buildConfiguration }}'
+        solutionName: $(solutionName)
+        buildConfiguration: ${{ parameters.buildConfiguration }}
 
       
     
