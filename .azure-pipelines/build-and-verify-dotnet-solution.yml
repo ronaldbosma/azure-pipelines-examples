@@ -1,0 +1,26 @@
+# For more information on parameters see https://docs.microsoft.com/en-us/azure/devops/pipelines/process/templates?view=azure-devops#parameters
+parameters:
+- name: solutionName
+  type: string
+- name: dotNetVersion
+  type: string
+  default: 5.0.x
+- name: buildConfiguration
+  type: string
+  default: Release
+  values:
+    - Debug
+    - Release
+
+steps:
+# Use this task to acquire a specific version of .NET Core from the Internet or the tools cache and add it to the PATH.
+# You can also use this task to change the version of .NET Core used in subsequent tasks like .NET Core cli task.
+# One other reason to use tool installer is if you want to decouple your pipeline from our update cycles
+# to help avoid a pipeline run being broken due to a change we make to our agent software.
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/tool/dotnet-core-tool-installer?view=azure-devops
+- task: UseDotNet@2
+  displayName: 'Use .NET Core sdk ${{ parameters.dotNetVersion }}'
+  inputs:
+    packageType: sdk
+    version: '${{ parameters.dotNetVersion }}'
+    installationPath: $(Agent.ToolsDirectory)/dotnet
