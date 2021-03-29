@@ -40,3 +40,9 @@ steps:
     projects: './src/${{ parameters.solutionName }}.sln'
     includeNuGetOrg: true
     
+- task: DotNetCoreCLI@2
+  displayName: Build Solution
+  inputs:
+    command: build
+    projects: './src/${{ parameters.solutionName }}.sln'
+    arguments: '--configuration ${{ parameters.buildConfiguration }}'
