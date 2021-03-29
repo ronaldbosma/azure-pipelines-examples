@@ -34,7 +34,7 @@ steps:
     installationPath: $(Agent.ToolsDirectory)/dotnet
 
 - task: DotNetCoreCLI@2
-  display: Restore NuGet Packages
+  displayName: Restore NuGet Packages
   inputs:
     command: restore
     projects: './src/${{ parameters.solutionName }}.sln'
