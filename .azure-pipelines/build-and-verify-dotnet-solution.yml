@@ -2,6 +2,12 @@
 parameters:
 - name: solutionName
   type: string
+- name: solutionNameEmpty
+  type: string
+- name: solutionNameWhitespace
+  type: string
+- name: solutionNameNull
+  type: string
 - name: dotNetVersion
   type: string
   default: 5.0.x
@@ -13,8 +19,18 @@ parameters:
     - Release
 
 steps:
-- ${{ if eq(replace(parameters.solutionName, ' ', ''), '') }}:
-  - powershell: Write-Host "Empty"
+- ${{ if -or(-not(parameters.solutionName), eq(replace(parameters.solutionName, ' ', ''), '')) }}:
+  - powershell: Write-Host "solutionName is empty -{{ parameters.solutionName }}-"
+
+- ${{ if -or(-not(parameters.solutionNameEmpty), eq(replace(parameters.solutionNameEmpty, ' ', ''), '')) }}:
+  - powershell: Write-Host "solutionNameEmpty is empty -{{ parameters.solutionNameEmpty }}-"
+
+- ${{ if -or(-not(parameters.solutionNameWhitespace), eq(replace(parameters.solutionNameWhitespace, ' ', ''), '')) }}:
+  - powershell: Write-Host "solutionNameWhitespace is empty -{{ parameters.solutionNameWhitespace }}-"
+
+- ${{ if -or(-not(parameters.solutionNameNull), eq(replace(parameters.solutionNameNull, ' ', ''), '')) }}:
+  - powershell: Write-Host "solutionNameNull is empty -{{ parameters.solutionNameNull }}-"
+
 - powershell: Write-Host "End"
 
 
