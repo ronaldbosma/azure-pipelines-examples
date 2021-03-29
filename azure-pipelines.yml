@@ -1,6 +1,7 @@
 # For more information see https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=schema%2Cparameter-schema#triggers
 trigger:
 - master
+- main
 
 stages:
 - stage: Build
