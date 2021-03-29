@@ -1,13 +1,25 @@
+# You can add parameters to the pipeline which can be set when manually queueing the pipeline.
+# For more information see https://docs.microsoft.com/en-us/azure/devops/pipelines/process/runtime-parameters?view=azure-devops&tabs=script#use-parameters-in-pipelines
+parameters:
+- name: buildConfiguration
+  type: string
+  default: Release
+  values:
+    - Debug
+    - Release
+
+
+# This pipeline triggers on a commit to the master or main branch.
 # For more information see https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=schema%2Cparameter-schema#triggers
 trigger:
 - master
 - main
 
+
 stages:
 - stage: Build
 
   variables:
-    buildConfiguration: Release
     solutionName: AzurePipelinesExample
   
   jobs:
@@ -22,7 +34,7 @@ stages:
     - template: '.azure-pipelines/build-and-verify-dotnet-solution.yml'
       parameters:
         solutionName: AzurePipelinesExample
-        buildConfiguration: Foo
+        buildConfiguration: ${{ parameters.buildConfiguration }}
 
       
     
