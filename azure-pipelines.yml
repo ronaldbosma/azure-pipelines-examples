@@ -21,9 +21,6 @@ stages:
     steps:
     - template: '.azure-pipelines/build-and-verify-dotnet-solution.yml'
       parameters:
-        solutionName: 'a value'
-        solutionNameEmpty: ''
-        solutionNameWhitespace: '   '
-        solutionNameNull: null
+        solutionName: ''
       
     

@@ -2,12 +2,6 @@
 parameters:
 - name: solutionName
   type: string
-- name: solutionNameEmpty
-  type: string
-- name: solutionNameWhitespace
-  type: string
-- name: solutionNameNull
-  type: string
 - name: dotNetVersion
   type: string
   default: 5.0.x
@@ -21,24 +15,9 @@ parameters:
 steps:
 - ${{ if eq(replace(parameters.solutionName, ' ', ''), '') }}:
   - script: |
-      echo "##vso[task.logissue type=error;]Missing template parameter \"solutionName\""
+      echo "##vso[task.logissue type=error;]Template parameter \"solutionName\" can not be empty or whitespace"
       echo "##vso[task.complete result=Failed;]"
-
-- ${{ if eq(replace(parameters.solutionNameEmpty, ' ', ''), '') }}:
-  - script: |
-      echo "##vso[task.logissue type=error;]Missing template parameter \"solutionNameEmpty\""
-      echo "##vso[task.complete result=Failed;]"
-
-- ${{ if eq(replace(parameters.solutionNameWhitespace, ' ', ''), '') }}:
-  - script: |
-      echo "##vso[task.logissue type=error;]Missing template parameter \"solutionNameWhitespace\""
-      echo "##vso[task.complete result=Failed;]"
-
-- powershell: |
-    Write-Host "solutionName -${{ parameters.solutionName }}-"
-    Write-Host "solutionNameEmpty -${{ parameters.solutionNameEmpty }}-"
-    Write-Host "solutionNameWhitespace -${{ parameters.solutionNameWhitespace }}-"
-    Write-Host "solutionNameNull -${{ parameters.solutionNameNull }}-"
+    displayName: 'Raise error if solutionName is empty or whitespace'
 
 
 # Use this task to acquire a specific version of .NET Core from the Internet or the tools cache and add it to the PATH.
