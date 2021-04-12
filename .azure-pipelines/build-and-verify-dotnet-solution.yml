@@ -45,7 +45,7 @@ steps:
   inputs:
     command: build
     projects: 'src/${{ parameters.solutionName }}.sln'
-    arguments: '--configuration ${{ parameters.buildConfiguration }}'
+    arguments: '--configuration ${{ parameters.buildConfiguration }} --no-restore'
 
 - task: DotNetCoreCLI@2
   displayName: Run Tests
