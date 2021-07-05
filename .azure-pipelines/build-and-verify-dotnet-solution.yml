@@ -14,9 +14,9 @@ parameters:
 
 
 variables:
-- sonarQubeServiceConnectionName: 'SonarQube'
-- sonarQubeProjectKey: '${{ parameters.solutionName }}'
-- sonarQubeProjectName: '${{ parameters.solutionName }}'
+  sonarQubeServiceConnectionName: 'SonarQube'
+  sonarQubeProjectKey: '${{ parameters.solutionName }}'
+  sonarQubeProjectName: '${{ parameters.solutionName }}'
 
 
 steps:
