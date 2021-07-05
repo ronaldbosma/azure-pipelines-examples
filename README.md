@@ -3,6 +3,18 @@
 
 ## Know issues
 
+### SonarQube Prepare fails with error: It was not possible to find any compatible framework version.
+
+You might get the following error if .NET Core SDK 2.x is not available on the server.
+
+```
+##[error]It was not possible to find any compatible framework version
+The framework 'Microsoft.NETCore.App', version '2.0.0' was not found.
+It was not possible to find any compatible framework version
+```
+
+The SonarQube scanner is build against .NET Core 2.1: https://github.com/SonarSource/sonar-scanner-msbuild/issues/797. You need to install it manually or use the `UseDotNet` task.
+
 ### SonarQube Prepare fails with error: To use the property "sonar.branch.name" and analyze branches...
 
 If you're using the Community Edition of SonarQube you might get the following error because you're missing branch support.
