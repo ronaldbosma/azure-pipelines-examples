@@ -68,7 +68,9 @@ steps:
     arguments: '--no-build --configuration ${{ parameters.buildConfiguration }} --logger trx --results-directory "$(Agent.TempDirectory)/TestResults/${{ parameters.solutionName }}" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="$(Agent.TempDirectory)/TestResults/${{ parameters.solutionName }}/Coverage"  --collect:"Code Coverage"'
 
 - task: SonarQubeAnalyze@4
-  displayName: 'Analyze SonarQube'
+  displayName: 'Run SonarQube Code Analysis'
 
 - task: SonarQubePublish@4
-  displayName: 'Publish SonarQube Results'
+  displayName: 'Publish SonarQube Quality Gate Results'
+  inputs:
+    pollingTimeoutSec: '300'
