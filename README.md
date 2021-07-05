@@ -15,6 +15,16 @@ It was not possible to find any compatible framework version
 
 The SonarQube scanner is build against .NET Core 2.1: https://github.com/SonarSource/sonar-scanner-msbuild/issues/797. You need to install it manually or use the `UseDotNet` task.
 
+### SonarQube Prepare fails with error: The token you provided doesn't have sufficient rights to check license.
+
+You can sometimes get the following error if you're using an older SonarQube service connection, even if the token has sufficient rights.
+
+```
+##[error] The token you provided doesn't have sufficient rights to check license.
+```
+
+You can fix this issue by creating a new SonarQube service connection. See https://community.sonarsource.com/t/the-token-you-provided-doesnt-have-sufficient-rights-to-check-license/38057.
+
 ### SonarQube Prepare fails with error: To use the property "sonar.branch.name" and analyze branches...
 
 If you're using the Community Edition of SonarQube you might get the following error because you're missing branch support.
