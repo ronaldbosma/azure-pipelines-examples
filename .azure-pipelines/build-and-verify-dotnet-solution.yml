@@ -34,6 +34,15 @@ steps:
     version: ${{ parameters.dotNetVersion }}
     installationPath: $(Agent.ToolsDirectory)/dotnet
 
+# The SonarQube scanner is build against .NET Core 2.1 so we need to install this SDK.
+# https://github.com/SonarSource/sonar-scanner-msbuild/issues/797
+- task: UseDotNet@2
+  displayName: Install .NET Core sdk 2.1.x for SonarQube
+  inputs:
+    packageType: sdk
+    version: 2.1.x
+    installationPath: $(Agent.ToolsDirectory)/dotnet
+
 - task: DotNetCoreCLI@2
   displayName: Restore NuGet Packages
   inputs:
