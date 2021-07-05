@@ -1,3 +1,9 @@
+variables:
+  sonarQubeServiceConnectionName: 'SonarQube'
+  sonarQubeProjectKey: '${{ parameters.solutionName }}'
+  sonarQubeProjectName: '${{ parameters.solutionName }}'
+
+
 # For more information on parameters see https://docs.microsoft.com/en-us/azure/devops/pipelines/process/templates?view=azure-devops#parameters
 parameters:
 - name: solutionName
@@ -11,12 +17,6 @@ parameters:
   values:
     - Debug
     - Release
-
-
-variables:
-  sonarQubeServiceConnectionName: 'SonarQube'
-  sonarQubeProjectKey: '${{ parameters.solutionName }}'
-  sonarQubeProjectName: '${{ parameters.solutionName }}'
 
 
 steps:
