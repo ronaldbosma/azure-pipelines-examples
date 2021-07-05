@@ -1,9 +1,3 @@
-variables:
-  sonarQubeServiceConnectionName: 'SonarQube'
-  sonarQubeProjectKey: '${{ parameters.solutionName }}'
-  sonarQubeProjectName: '${{ parameters.solutionName }}'
-
-
 # For more information on parameters see https://docs.microsoft.com/en-us/azure/devops/pipelines/process/templates?view=azure-devops#parameters
 parameters:
 - name: solutionName
@@ -50,10 +44,11 @@ steps:
 - task: SonarQubePrepare@4
   displayName: 'Prepare SonarQube Analysis'
   inputs:
-    SonarQube: '$(sonarQubeServiceConnectionName)'
+    # Needs to match the name of the SonarQube service connection
+    SonarQube: 'SonarQube'
     scannerMode: 'MSBuild'
-    projectKey: '$(sonarQubeProjectKey)'
-    projectName: '$(sonarQubeProjectName)'
+    projectKey: '${{ parameters.solutionName }}'
+    projectName: '${{ parameters.solutionName }}'
     
 - task: DotNetCoreCLI@2
   displayName: Build Solution
