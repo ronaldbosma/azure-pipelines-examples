@@ -12,6 +12,13 @@ parameters:
     - Debug
     - Release
 
+
+variables:
+- sonarQubeServiceConnectionName: 'SonarQube'
+- sonarQubeProjectKey: '${{ parameters.solutionName }}'
+- sonarQubeProjectName: '${{ parameters.solutionName }}'
+
+
 steps:
 # It's possible to use template expressions to validate if a parameter is empty or whitespace and fail the pipeline.
 # For more information on template expressions see https://docs.microsoft.com/en-us/azure/devops/pipelines/process/templates?view=azure-devops#template-expressions
@@ -39,6 +46,14 @@ steps:
     command: restore
     projects: 'src/${{ parameters.solutionName }}.sln'
     includeNuGetOrg: true
+
+- task: SonarQubePrepare@4
+  displayName: 'Prepare SonarQube Analysis'
+  inputs:
+    SonarQube: '$(sonarQubeServiceConnectionName)'
+    scannerMode: 'MSBuild'
+    projectKey: '$(sonarQubeProjectKey)'
+    projectName: '$(sonarQubeProjectName)'
     
 - task: DotNetCoreCLI@2
   displayName: Build Solution
@@ -56,3 +71,9 @@ steps:
     # For more information on file matching patterns see https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/file-matching-patterns?view=azure-devops
     projects: 'src/**/*@([Tt]ests|Specs).csproj'
     arguments: '--no-build --configuration ${{ parameters.buildConfiguration }} --logger trx --results-directory "$(Agent.TempDirectory)/TestResults/${{ parameters.solutionName }}" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="$(Agent.TempDirectory)/TestResults/${{ parameters.solutionName }}/Coverage"  --collect:"Code Coverage"'
+
+- task: SonarQubeAnalyze@4
+  displayName: 'Analyze SonarQube'
+
+- task: SonarQubePublish@4
+  displayName: 'Publish SonarQube Results'
