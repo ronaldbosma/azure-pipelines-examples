@@ -34,5 +34,18 @@ namespace AzurePipelinesExample.WebApi.Controllers
             })
             .ToArray();
         }
+
+        [HttpGet]
+        public IEnumerable<WeatherForecast> Retrieve(int numberOfDays)
+        {
+            var rng = new Random();
+            return Enumerable.Range(1, numberOfDays).Select(index => new WeatherForecast
+            {
+                Date = DateTime.Now.AddDays(index),
+                TemperatureC = rng.Next(-20, 55),
+                Summary = Summaries[rng.Next(Summaries.Length)]
+            })
+            .ToArray();
+        }
     }
 }

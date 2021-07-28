@@ -8,17 +8,18 @@ namespace AzurePipelinesExample.WebApi.Tests.Controllers
     public class WeatherForecastControllerTests
     {
         [TestMethod]
-        public void Get()
+        public void Retrieve_ValidNumberOfDays_ForecastReturned()
         {
             //Arrange
             var sut = new WeatherForecastController(null);
+            var numberOfDays = 7;
 
             //Act
-            var result = sut.Get().ToList();
+            var result = sut.Retrieve(numberOfDays).ToList();
 
             //Assert
             Assert.IsNotNull(result);
-            Assert.AreEqual(5, result.Count);
+            Assert.AreEqual(numberOfDays, result.Count);
         }
     }
 }
