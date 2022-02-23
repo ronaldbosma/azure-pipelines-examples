@@ -36,6 +36,16 @@ stages:
       parameters:
         solutionName: $(solutionName)
         buildConfiguration: ${{ parameters.buildConfiguration }}
+        
+    - template: .azure-pipelines/package-webapi.yml
+      parameters:
+        solutionName: $(solutionName)
+        buildConfiguration: ${{ parameters.buildConfiguration }}
+
+    - template: .azure-pipelines/package-entities.yml
+      parameters:
+        solutionName: $(solutionName)
+        buildConfiguration: ${{ parameters.buildConfiguration }}
 
       
     
